@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F202544015B615DC00083755 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F202543F15B615DC00083755 /* Cocoa.framework */; };
+		F202544A15B615DC00083755 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F202544815B615DC00083755 /* InfoPlist.strings */; };
+		F202544E15B615DC00083755 /* WaveTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F202544D15B615DC00083755 /* WaveTools.m */; };
+		F202545615B615DC00083755 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F202545515B615DC00083755 /* SenTestingKit.framework */; };
+		F202545715B615DC00083755 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F202543F15B615DC00083755 /* Cocoa.framework */; };
+		F202545A15B615DC00083755 /* WaveTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F202543C15B615DC00083755 /* WaveTools.framework */; };
+		F202546015B615DC00083755 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F202545E15B615DC00083755 /* InfoPlist.strings */; };
+		F202546215B615DC00083755 /* WaveToolsTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F202546115B615DC00083755 /* WaveToolsTests.h */; };
+		F202546415B615DC00083755 /* WaveToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F202546315B615DC00083755 /* WaveToolsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F202545815B615DC00083755 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F202543215B615DC00083755 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F202543B15B615DC00083755;
+			remoteInfo = WaveTools;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F202543C15B615DC00083755 /* WaveTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WaveTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F202543F15B615DC00083755 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F202544215B615DC00083755 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F202544315B615DC00083755 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F202544415B615DC00083755 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F202544715B615DC00083755 /* WaveTools-Info.plist */ = {isa = PBXFileReference; path = "WaveTools-Info.plist"; sourceTree = "<group>"; };
+		F202544915B615DC00083755 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F202544B15B615DC00083755 /* WaveTools-Prefix.pch */ = {isa = PBXFileReference; path = "WaveTools-Prefix.pch"; sourceTree = "<group>"; };
+		F202544C15B615DC00083755 /* WaveTools.h */ = {isa = PBXFileReference; path = WaveTools.h; sourceTree = "<group>"; };
+		F202544D15B615DC00083755 /* WaveTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveTools.m; sourceTree = "<group>"; };
+		F202545415B615DC00083755 /* WaveToolsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaveToolsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F202545515B615DC00083755 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F202545D15B615DC00083755 /* WaveToolsTests-Info.plist */ = {isa = PBXFileReference; path = "WaveToolsTests-Info.plist"; sourceTree = "<group>"; };
+		F202545F15B615DC00083755 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F202546115B615DC00083755 /* WaveToolsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaveToolsTests.h; sourceTree = "<group>"; };
+		F202546315B615DC00083755 /* WaveToolsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveToolsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F202543815B615DC00083755 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F202544015B615DC00083755 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F202545015B615DC00083755 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F202545615B615DC00083755 /* SenTestingKit.framework in Frameworks */,
+				F202545715B615DC00083755 /* Cocoa.framework in Frameworks */,
+				F202545A15B615DC00083755 /* WaveTools.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F202543015B615DC00083755 = {
+			isa = PBXGroup;
+			children = (
+				F202544515B615DC00083755 /* WaveTools */,
+				F202545B15B615DC00083755 /* WaveToolsTests */,
+				F202543E15B615DC00083755 /* Frameworks */,
+				F202543D15B615DC00083755 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F202543D15B615DC00083755 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F202543C15B615DC00083755 /* WaveTools.framework */,
+				F202545415B615DC00083755 /* WaveToolsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F202543E15B615DC00083755 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F202543F15B615DC00083755 /* Cocoa.framework */,
+				F202545515B615DC00083755 /* SenTestingKit.framework */,
+				F202544115B615DC00083755 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F202544115B615DC00083755 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F202544215B615DC00083755 /* AppKit.framework */,
+				F202544315B615DC00083755 /* CoreData.framework */,
+				F202544415B615DC00083755 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F202544515B615DC00083755 /* WaveTools */ = {
+			isa = PBXGroup;
+			children = (
+				F202544C15B615DC00083755 /* WaveTools.h */,
+				F202544D15B615DC00083755 /* WaveTools.m */,
+				F202544615B615DC00083755 /* Supporting Files */,
+			);
+			path = WaveTools;
+			sourceTree = "<group>";
+		};
+		F202544615B615DC00083755 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F202544715B615DC00083755 /* WaveTools-Info.plist */,
+				F202544815B615DC00083755 /* InfoPlist.strings */,
+				F202544B15B615DC00083755 /* WaveTools-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F202545B15B615DC00083755 /* WaveToolsTests */ = {
+			isa = PBXGroup;
+			children = (
+				F202546115B615DC00083755 /* WaveToolsTests.h */,
+				F202546315B615DC00083755 /* WaveToolsTests.m */,
+				F202545C15B615DC00083755 /* Supporting Files */,
+			);
+			path = WaveToolsTests;
+			sourceTree = "<group>";
+		};
+		F202545C15B615DC00083755 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F202545D15B615DC00083755 /* WaveToolsTests-Info.plist */,
+				F202545E15B615DC00083755 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F202543915B615DC00083755 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F202543B15B615DC00083755 /* WaveTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F202546715B615DC00083755 /* Build configuration list for PBXNativeTarget "WaveTools" */;
+			buildPhases = (
+				F202543715B615DC00083755 /* Sources */,
+				F202543815B615DC00083755 /* Frameworks */,
+				F202543915B615DC00083755 /* Headers */,
+				F202543A15B615DC00083755 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WaveTools;
+			productName = WaveTools;
+			productReference = F202543C15B615DC00083755 /* WaveTools.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F202545315B615DC00083755 /* WaveToolsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F202546A15B615DC00083755 /* Build configuration list for PBXNativeTarget "WaveToolsTests" */;
+			buildPhases = (
+				F202544F15B615DC00083755 /* Sources */,
+				F202545015B615DC00083755 /* Frameworks */,
+				F202545115B615DC00083755 /* Resources */,
+				F202545215B615DC00083755 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F202545915B615DC00083755 /* PBXTargetDependency */,
+			);
+			name = WaveToolsTests;
+			productName = WaveToolsTests;
+			productReference = F202545415B615DC00083755 /* WaveToolsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F202543215B615DC00083755 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Apple Inc.";
+			};
+			buildConfigurationList = F202543515B615DC00083755 /* Build configuration list for PBXProject "WaveTools" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F202543015B615DC00083755;
+			productRefGroup = F202543D15B615DC00083755 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F202543B15B615DC00083755 /* WaveTools */,
+				F202545315B615DC00083755 /* WaveToolsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F202543A15B615DC00083755 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F202544A15B615DC00083755 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F202545115B615DC00083755 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F202546015B615DC00083755 /* InfoPlist.strings in Resources */,
+				F202546215B615DC00083755 /* WaveToolsTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F202545215B615DC00083755 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F202543715B615DC00083755 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F202544E15B615DC00083755 /* WaveTools.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F202544F15B615DC00083755 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F202546415B615DC00083755 /* WaveToolsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F202545915B615DC00083755 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F202543B15B615DC00083755 /* WaveTools */;
+			targetProxy = F202545815B615DC00083755 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F202544815B615DC00083755 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F202544915B615DC00083755 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F202545E15B615DC00083755 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F202545F15B615DC00083755 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F202546515B615DC00083755 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F202546615B615DC00083755 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F202546815B615DC00083755 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WaveTools/WaveTools-Prefix.pch";
+				INFOPLIST_FILE = "WaveTools/WaveTools-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		F202546915B615DC00083755 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WaveTools/WaveTools-Prefix.pch";
+				INFOPLIST_FILE = "WaveTools/WaveTools-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		F202546B15B615DC00083755 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WaveTools/WaveTools-Prefix.pch";
+				INFOPLIST_FILE = "WaveToolsTests/WaveToolsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F202546C15B615DC00083755 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WaveTools/WaveTools-Prefix.pch";
+				INFOPLIST_FILE = "WaveToolsTests/WaveToolsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F202543515B615DC00083755 /* Build configuration list for PBXProject "WaveTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F202546515B615DC00083755 /* Debug */,
+				F202546615B615DC00083755 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F202546715B615DC00083755 /* Build configuration list for PBXNativeTarget "WaveTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F202546815B615DC00083755 /* Debug */,
+				F202546915B615DC00083755 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F202546A15B615DC00083755 /* Build configuration list for PBXNativeTarget "WaveToolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F202546B15B615DC00083755 /* Debug */,
+				F202546C15B615DC00083755 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F202543215B615DC00083755 /* Project object */;
+}
