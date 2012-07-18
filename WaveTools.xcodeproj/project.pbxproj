@@ -66,6 +66,7 @@
 		F202546315B615DC00083755 /* WaveToolsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveToolsTests.m; sourceTree = "<group>"; };
 		F202546D15B6180800083755 /* DWTMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTMath.h; sourceTree = "<group>"; };
 		F202546E15B6180800083755 /* DWTMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTMath.m; sourceTree = "<group>"; };
+		F28A6A1515B65CC400B4FFD0 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsLocalization.h; sourceTree = "<group>"; };
 		F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsBundleUtils.h; sourceTree = "<group>"; };
 		F2EC842C15B61BEE0069145A /* WaveToolsBundleUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveToolsBundleUtils.m; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		F202543015B615DC00083755 = {
 			isa = PBXGroup;
 			children = (
+				F28A6A1515B65CC400B4FFD0 /* README.markdown */,
 				F202544515B615DC00083755 /* WaveTools */,
 				F202545B15B615DC00083755 /* WaveToolsTests */,
 				F202543E15B615DC00083755 /* Frameworks */,
