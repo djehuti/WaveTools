@@ -21,6 +21,21 @@
 		F2EC842915B61ABB0069145A /* WaveToolsLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */; };
 		F2EC842D15B61BEE0069145A /* WaveToolsBundleUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2EC842E15B61BEE0069145A /* WaveToolsBundleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC842C15B61BEE0069145A /* WaveToolsBundleUtils.m */; };
+		F2EC843615B638930069145A /* DWTWaveChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC843415B638930069145A /* DWTWaveChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC843715B638930069145A /* DWTWaveChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC843515B638930069145A /* DWTWaveChunk.m */; };
+		F2EC843A15B63AEF0069145A /* DWTWaveUnknownChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC843815B63AEF0069145A /* DWTWaveUnknownChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC843B15B63AEF0069145A /* DWTWaveUnknownChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC843915B63AEF0069145A /* DWTWaveUnknownChunk.m */; };
+		F2EC843E15B648E40069145A /* DWTWaveDataChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC843C15B648E40069145A /* DWTWaveDataChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC843F15B648E40069145A /* DWTWaveDataChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC843D15B648E40069145A /* DWTWaveDataChunk.m */; };
+		F2EC844215B6496D0069145A /* DWTWaveFmtChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC844015B6496D0069145A /* DWTWaveFmtChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC844315B6496D0069145A /* DWTWaveFmtChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC844115B6496D0069145A /* DWTWaveFmtChunk.m */; };
+		F2EC844615B64AF50069145A /* DWTWaveChunkClasses.plist in Resources */ = {isa = PBXBuildFile; fileRef = F2EC844515B64AF50069145A /* DWTWaveChunkClasses.plist */; };
+		F2EC844915B64B510069145A /* DWTWaveGenericListChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC844715B64B510069145A /* DWTWaveGenericListChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC844A15B64B510069145A /* DWTWaveGenericListChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC844815B64B510069145A /* DWTWaveGenericListChunk.m */; };
+		F2EC844D15B64BA80069145A /* DWTWaveListInfoChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC844B15B64BA80069145A /* DWTWaveListInfoChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC844E15B64BA80069145A /* DWTWaveListInfoChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC844C15B64BA80069145A /* DWTWaveListInfoChunk.m */; };
+		F2EC845115B64C250069145A /* DWTWaveStringChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC844F15B64C250069145A /* DWTWaveStringChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2EC845215B64C250069145A /* DWTWaveStringChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EC845015B64C250069145A /* DWTWaveStringChunk.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +69,21 @@
 		F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsLocalization.h; sourceTree = "<group>"; };
 		F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsBundleUtils.h; sourceTree = "<group>"; };
 		F2EC842C15B61BEE0069145A /* WaveToolsBundleUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveToolsBundleUtils.m; sourceTree = "<group>"; };
+		F2EC843415B638930069145A /* DWTWaveChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveChunk.h; sourceTree = "<group>"; };
+		F2EC843515B638930069145A /* DWTWaveChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveChunk.m; sourceTree = "<group>"; };
+		F2EC843815B63AEF0069145A /* DWTWaveUnknownChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveUnknownChunk.h; sourceTree = "<group>"; };
+		F2EC843915B63AEF0069145A /* DWTWaveUnknownChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveUnknownChunk.m; sourceTree = "<group>"; };
+		F2EC843C15B648E40069145A /* DWTWaveDataChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveDataChunk.h; sourceTree = "<group>"; };
+		F2EC843D15B648E40069145A /* DWTWaveDataChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveDataChunk.m; sourceTree = "<group>"; };
+		F2EC844015B6496D0069145A /* DWTWaveFmtChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveFmtChunk.h; sourceTree = "<group>"; };
+		F2EC844115B6496D0069145A /* DWTWaveFmtChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveFmtChunk.m; sourceTree = "<group>"; };
+		F2EC844515B64AF50069145A /* DWTWaveChunkClasses.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DWTWaveChunkClasses.plist; sourceTree = "<group>"; };
+		F2EC844715B64B510069145A /* DWTWaveGenericListChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveGenericListChunk.h; sourceTree = "<group>"; };
+		F2EC844815B64B510069145A /* DWTWaveGenericListChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveGenericListChunk.m; sourceTree = "<group>"; };
+		F2EC844B15B64BA80069145A /* DWTWaveListInfoChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveListInfoChunk.h; sourceTree = "<group>"; };
+		F2EC844C15B64BA80069145A /* DWTWaveListInfoChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveListInfoChunk.m; sourceTree = "<group>"; };
+		F2EC844F15B64C250069145A /* DWTWaveStringChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveStringChunk.h; sourceTree = "<group>"; };
+		F2EC845015B64C250069145A /* DWTWaveStringChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveStringChunk.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +156,8 @@
 				F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */,
 				F202546D15B6180800083755 /* DWTMath.h */,
 				F202546E15B6180800083755 /* DWTMath.m */,
+				F2EC843315B638560069145A /* WaveChunk */,
+				F2EC844415B64A900069145A /* Resources */,
 				F202544615B615DC00083755 /* Supporting Files */,
 			);
 			path = WaveTools;
@@ -160,6 +192,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F2EC843315B638560069145A /* WaveChunk */ = {
+			isa = PBXGroup;
+			children = (
+				F2EC843415B638930069145A /* DWTWaveChunk.h */,
+				F2EC843515B638930069145A /* DWTWaveChunk.m */,
+				F2EC843815B63AEF0069145A /* DWTWaveUnknownChunk.h */,
+				F2EC843915B63AEF0069145A /* DWTWaveUnknownChunk.m */,
+				F2EC843C15B648E40069145A /* DWTWaveDataChunk.h */,
+				F2EC843D15B648E40069145A /* DWTWaveDataChunk.m */,
+				F2EC844015B6496D0069145A /* DWTWaveFmtChunk.h */,
+				F2EC844115B6496D0069145A /* DWTWaveFmtChunk.m */,
+				F2EC844715B64B510069145A /* DWTWaveGenericListChunk.h */,
+				F2EC844815B64B510069145A /* DWTWaveGenericListChunk.m */,
+				F2EC844B15B64BA80069145A /* DWTWaveListInfoChunk.h */,
+				F2EC844C15B64BA80069145A /* DWTWaveListInfoChunk.m */,
+				F2EC844F15B64C250069145A /* DWTWaveStringChunk.h */,
+				F2EC845015B64C250069145A /* DWTWaveStringChunk.m */,
+			);
+			name = WaveChunk;
+			sourceTree = "<group>";
+		};
+		F2EC844415B64A900069145A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2EC844515B64AF50069145A /* DWTWaveChunkClasses.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -171,6 +232,13 @@
 				F2EC842515B61A910069145A /* WaveTools.h in Headers */,
 				F2EC842915B61ABB0069145A /* WaveToolsLocalization.h in Headers */,
 				F2EC842D15B61BEE0069145A /* WaveToolsBundleUtils.h in Headers */,
+				F2EC843615B638930069145A /* DWTWaveChunk.h in Headers */,
+				F2EC843A15B63AEF0069145A /* DWTWaveUnknownChunk.h in Headers */,
+				F2EC843E15B648E40069145A /* DWTWaveDataChunk.h in Headers */,
+				F2EC844215B6496D0069145A /* DWTWaveFmtChunk.h in Headers */,
+				F2EC844915B64B510069145A /* DWTWaveGenericListChunk.h in Headers */,
+				F2EC844D15B64BA80069145A /* DWTWaveListInfoChunk.h in Headers */,
+				F2EC845115B64C250069145A /* DWTWaveStringChunk.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F202544A15B615DC00083755 /* InfoPlist.strings in Resources */,
+				F2EC844615B64AF50069145A /* DWTWaveChunkClasses.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +352,13 @@
 			files = (
 				F202547015B6180800083755 /* DWTMath.m in Sources */,
 				F2EC842E15B61BEE0069145A /* WaveToolsBundleUtils.m in Sources */,
+				F2EC843715B638930069145A /* DWTWaveChunk.m in Sources */,
+				F2EC843B15B63AEF0069145A /* DWTWaveUnknownChunk.m in Sources */,
+				F2EC843F15B648E40069145A /* DWTWaveDataChunk.m in Sources */,
+				F2EC844315B6496D0069145A /* DWTWaveFmtChunk.m in Sources */,
+				F2EC844A15B64B510069145A /* DWTWaveGenericListChunk.m in Sources */,
+				F2EC844E15B64BA80069145A /* DWTWaveListInfoChunk.m in Sources */,
+				F2EC845215B64C250069145A /* DWTWaveStringChunk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
