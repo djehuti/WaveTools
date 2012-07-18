@@ -22,6 +22,9 @@ uint64_t DWTGCD(uint64_t x, uint64_t y);
 // Computes the LCM of x and y. Returns 0 if x or y is 0.
 uint64_t DWTLCM(uint64_t x, uint64_t y);
 
+// Returns a random 64-bit value.
+uint64_t DWTRandom(void);
+
 #define DWTMathAlmostEqual(x, y, tolerance) (abs((x) - (y)) < (tolerance))
 
 #ifndef EXCLUDE_DWTMATH_INLINE_DEFINITIONS

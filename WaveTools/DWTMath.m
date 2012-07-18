@@ -47,6 +47,14 @@ uint64_t DWTLCM(uint64_t x, uint64_t y)
     return lcm;
 }
 
+// Returns a random 64-bit value.
+uint64_t DWTRandom(void)
+{
+    uint64_t rand = (uint64_t) arc4random();
+    rand = (rand << 32) | arc4random();
+    return rand;
+}
+
 // Returns sinc(x); that is, sin(pi*x)/(pi*x), where sinc(0)===1.
 double DWTSinc(double x)
 {

@@ -62,6 +62,16 @@
     STAssertEquals(lcm2, 0UL, @"expected lcm(1,0)==0, got %lu", lcm2);
 }
 
+- (void) testRandom
+{
+    uint64_t randAccum = 0;
+    for (int i = 0; i < 1000; ++i) {
+        randAccum |= DWTRandom();
+    }
+    // This test will randomly fail in rare cases (64 in 2^1000 times, I think).
+    STAssertEquals(randAccum, UINT64_MAX, @"expected all bits to eventually show up; got 0x%16lx", randAccum);
+}
+
 - (void) testSinc
 {
     const double test1x = 0.0;
