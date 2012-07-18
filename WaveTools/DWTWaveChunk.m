@@ -7,6 +7,13 @@
 //
 
 
+// Found a bunch of useful info here: http://www.sonicspot.com/guide/wavefiles.html
+// Including format of most of the chunks.
+
+// Also here, for the text chunks in the LIST-INFO chunk:
+// http://www.digitizationguidelines.gov/audio-visual/documents/core_doc_help.html
+
+
 #import "DWTWaveChunk.h"
 #import "DWTWaveUnknownChunk.h"
 #import "WaveToolsBundleUtils.h"

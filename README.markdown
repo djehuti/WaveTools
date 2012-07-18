@@ -16,6 +16,9 @@ in a RIFF WAVE file. To read a WAVE file, use
 You can then use the RIFF chunk (which is `firstChunk` in the above code
 snippet) and its subchunks to explore the contents of the WAVE file.
 
+See the [Wave Explorer][exp] application for an application using the
+framework `DWTWaveChunk` classes.
+
 ## Math functions
 
 There are a few miscellaneous math functions available in `DWTMath.h`.
@@ -25,3 +28,5 @@ There are a few miscellaneous math functions available in `DWTMath.h`.
 I plan to add sample rate conversion, dithering, and more chunk types.
 The goal of the chunk types is to be able to read region definitions from
 the file, and possibly adjust them when sample rate converting the file.
+
+[exp]: https://github.com/djehuti/WaveExplorer
