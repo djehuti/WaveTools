@@ -13,6 +13,11 @@
 
 @implementation DWTWaveDataChunk
 
++ (NSString*) defaultChunkID
+{
+    return @"data";
+}
+
 + (NSUInteger) autoProcessSubchunkOffset
 {
     return NSUIntegerMax;

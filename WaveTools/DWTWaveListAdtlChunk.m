@@ -1,24 +1,24 @@
 //
-//  DWTWaveListInfoChunk.m
+//  DWTWaveListAdtlChunk.m
 //  WaveTools
 //
-//  Created by Ben Cox on 7/17/12.
-//  Copyright 2012 Ben Cox. All rights reserved.
+//  Created by Ben Cox on 7/21/12.
+//  Copyright (c) 2012 Ben Cox. All rights reserved.
 //
 
 
-#import "DWTWaveListInfoChunk.h"
+#import "DWTWaveListAdtlChunk.h"
 #import "NSData+WaveToolsExtensions.h"
 #import "WaveToolsLocalization.h"
 
 
-@implementation DWTWaveListInfoChunk
+@implementation DWTWaveListAdtlChunk
 
 + (NSData*) emptyChunkData
 {
     static unsigned char s_emptyChunkBytes[] = {
-        'L', 'I', 'S', 'T', 4, 0, 0, 0,
-        'I', 'N', 'F', 'O'
+        'l', 'l', 's', 't', 4, 0, 0, 0,
+        'a', 'd', 't', 'l'
     };
     static NSData* s_emptyChunkData = nil;
     static dispatch_once_t s_emptyChunkOnce;
@@ -31,18 +31,18 @@
 + (BOOL) canHandleChunkWithData:(NSData*)data
 {
     NSString* subtype = [data read4CharAtOffset:kDWTWaveChunkHeaderSize];
-    return ([subtype caseInsensitiveCompare:@"INFO"] == NSOrderedSame);
+    return ([subtype caseInsensitiveCompare:@"adtl"] == NSOrderedSame);
 }
 
 + (NSUInteger) autoProcessSubchunkOffset
 {
-    // The first bit is INFO and then subchunks.
+    // The first bit is 'adtl' and then subchunks.
     return 4;
 }
 
 - (NSString*) moreInfo
 {
-    return DWTLocalizedString(@"INFO", @"list-info chunk subtype name");
+    return DWTLocalizedString(@"Associated data list chunk", @"list-adtl chunk subtype");
 }
 
 @end

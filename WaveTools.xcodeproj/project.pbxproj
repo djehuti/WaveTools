@@ -17,6 +17,19 @@
 		F202546415B615DC00083755 /* WaveToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F202546315B615DC00083755 /* WaveToolsTests.m */; };
 		F202546F15B6180800083755 /* DWTMath.h in Headers */ = {isa = PBXBuildFile; fileRef = F202546D15B6180800083755 /* DWTMath.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F202547015B6180800083755 /* DWTMath.m in Sources */ = {isa = PBXBuildFile; fileRef = F202546E15B6180800083755 /* DWTMath.m */; };
+		F26B869915BB3D2400844298 /* WaveChunkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F26B869815BB3D2400844298 /* WaveChunkTests.m */; };
+		F27BDDB815BB70E800AF31E6 /* DWTWaveListAdtlChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDB615BB70E700AF31E6 /* DWTWaveListAdtlChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDDB915BB70E800AF31E6 /* DWTWaveListAdtlChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDB715BB70E800AF31E6 /* DWTWaveListAdtlChunk.m */; };
+		F27BDDBD15BB718400AF31E6 /* DWTWaveLabelChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDBB15BB718400AF31E6 /* DWTWaveLabelChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDDBE15BB718400AF31E6 /* DWTWaveLabelChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDBC15BB718400AF31E6 /* DWTWaveLabelChunk.m */; };
+		F27BDDC115BB7D6B00AF31E6 /* DWTWaveCueChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDBF15BB7D6B00AF31E6 /* DWTWaveCueChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDDC215BB7D6B00AF31E6 /* DWTWaveCueChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDC015BB7D6B00AF31E6 /* DWTWaveCueChunk.m */; };
+		F27BDDC515BB836A00AF31E6 /* NSData+WaveToolsExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDC315BB836A00AF31E6 /* NSData+WaveToolsExtensions.h */; };
+		F27BDDC615BB836A00AF31E6 /* NSData+WaveToolsExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDC415BB836A00AF31E6 /* NSData+WaveToolsExtensions.m */; };
+		F27BDDC915BB9BE000AF31E6 /* DWTWaveSilentChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDC715BB9BDF00AF31E6 /* DWTWaveSilentChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDDCA15BB9BE000AF31E6 /* DWTWaveSilentChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDC815BB9BE000AF31E6 /* DWTWaveSilentChunk.m */; };
+		F27BDDD115BBB73F00AF31E6 /* DWTWavePlaylistChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDCF15BBB73F00AF31E6 /* DWTWavePlaylistChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDDD215BBB73F00AF31E6 /* DWTWavePlaylistChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDD015BBB73F00AF31E6 /* DWTWavePlaylistChunk.m */; };
 		F2EC842515B61A910069145A /* WaveTools.h in Headers */ = {isa = PBXBuildFile; fileRef = F202544C15B615DC00083755 /* WaveTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2EC842915B61ABB0069145A /* WaveToolsLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */; };
 		F2EC842D15B61BEE0069145A /* WaveToolsBundleUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,6 +79,20 @@
 		F202546315B615DC00083755 /* WaveToolsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaveToolsTests.m; sourceTree = "<group>"; };
 		F202546D15B6180800083755 /* DWTMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTMath.h; sourceTree = "<group>"; };
 		F202546E15B6180800083755 /* DWTMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTMath.m; sourceTree = "<group>"; };
+		F26B869715BB3D2400844298 /* WaveChunkTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveChunkTests.h; sourceTree = "<group>"; };
+		F26B869815BB3D2400844298 /* WaveChunkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveChunkTests.m; sourceTree = "<group>"; };
+		F27BDDB615BB70E700AF31E6 /* DWTWaveListAdtlChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveListAdtlChunk.h; sourceTree = "<group>"; };
+		F27BDDB715BB70E800AF31E6 /* DWTWaveListAdtlChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveListAdtlChunk.m; sourceTree = "<group>"; };
+		F27BDDBB15BB718400AF31E6 /* DWTWaveLabelChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveLabelChunk.h; sourceTree = "<group>"; };
+		F27BDDBC15BB718400AF31E6 /* DWTWaveLabelChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveLabelChunk.m; sourceTree = "<group>"; };
+		F27BDDBF15BB7D6B00AF31E6 /* DWTWaveCueChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveCueChunk.h; sourceTree = "<group>"; };
+		F27BDDC015BB7D6B00AF31E6 /* DWTWaveCueChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveCueChunk.m; sourceTree = "<group>"; };
+		F27BDDC315BB836A00AF31E6 /* NSData+WaveToolsExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+WaveToolsExtensions.h"; sourceTree = "<group>"; };
+		F27BDDC415BB836A00AF31E6 /* NSData+WaveToolsExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+WaveToolsExtensions.m"; sourceTree = "<group>"; };
+		F27BDDC715BB9BDF00AF31E6 /* DWTWaveSilentChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveSilentChunk.h; sourceTree = "<group>"; };
+		F27BDDC815BB9BE000AF31E6 /* DWTWaveSilentChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveSilentChunk.m; sourceTree = "<group>"; };
+		F27BDDCF15BBB73F00AF31E6 /* DWTWavePlaylistChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWavePlaylistChunk.h; sourceTree = "<group>"; };
+		F27BDDD015BBB73F00AF31E6 /* DWTWavePlaylistChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWavePlaylistChunk.m; sourceTree = "<group>"; };
 		F28A6A1515B65CC400B4FFD0 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsLocalization.h; sourceTree = "<group>"; };
 		F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsBundleUtils.h; sourceTree = "<group>"; };
@@ -180,6 +207,8 @@
 			children = (
 				F202546115B615DC00083755 /* WaveToolsTests.h */,
 				F202546315B615DC00083755 /* WaveToolsTests.m */,
+				F26B869715BB3D2400844298 /* WaveChunkTests.h */,
+				F26B869815BB3D2400844298 /* WaveChunkTests.m */,
 				F202545C15B615DC00083755 /* Supporting Files */,
 			);
 			path = WaveToolsTests;
@@ -197,6 +226,8 @@
 		F2EC843315B638560069145A /* WaveChunk */ = {
 			isa = PBXGroup;
 			children = (
+				F27BDDC315BB836A00AF31E6 /* NSData+WaveToolsExtensions.h */,
+				F27BDDC415BB836A00AF31E6 /* NSData+WaveToolsExtensions.m */,
 				F2EC843415B638930069145A /* DWTWaveChunk.h */,
 				F2EC843515B638930069145A /* DWTWaveChunk.m */,
 				F2EC843815B63AEF0069145A /* DWTWaveUnknownChunk.h */,
@@ -209,8 +240,18 @@
 				F2EC844815B64B510069145A /* DWTWaveGenericListChunk.m */,
 				F2EC844B15B64BA80069145A /* DWTWaveListInfoChunk.h */,
 				F2EC844C15B64BA80069145A /* DWTWaveListInfoChunk.m */,
+				F27BDDB615BB70E700AF31E6 /* DWTWaveListAdtlChunk.h */,
+				F27BDDB715BB70E800AF31E6 /* DWTWaveListAdtlChunk.m */,
 				F2EC844F15B64C250069145A /* DWTWaveStringChunk.h */,
 				F2EC845015B64C250069145A /* DWTWaveStringChunk.m */,
+				F27BDDBB15BB718400AF31E6 /* DWTWaveLabelChunk.h */,
+				F27BDDBC15BB718400AF31E6 /* DWTWaveLabelChunk.m */,
+				F27BDDBF15BB7D6B00AF31E6 /* DWTWaveCueChunk.h */,
+				F27BDDC015BB7D6B00AF31E6 /* DWTWaveCueChunk.m */,
+				F27BDDC715BB9BDF00AF31E6 /* DWTWaveSilentChunk.h */,
+				F27BDDC815BB9BE000AF31E6 /* DWTWaveSilentChunk.m */,
+				F27BDDCF15BBB73F00AF31E6 /* DWTWavePlaylistChunk.h */,
+				F27BDDD015BBB73F00AF31E6 /* DWTWavePlaylistChunk.m */,
 			);
 			name = WaveChunk;
 			sourceTree = "<group>";
@@ -241,6 +282,12 @@
 				F2EC844915B64B510069145A /* DWTWaveGenericListChunk.h in Headers */,
 				F2EC844D15B64BA80069145A /* DWTWaveListInfoChunk.h in Headers */,
 				F2EC845115B64C250069145A /* DWTWaveStringChunk.h in Headers */,
+				F27BDDB815BB70E800AF31E6 /* DWTWaveListAdtlChunk.h in Headers */,
+				F27BDDBD15BB718400AF31E6 /* DWTWaveLabelChunk.h in Headers */,
+				F27BDDC115BB7D6B00AF31E6 /* DWTWaveCueChunk.h in Headers */,
+				F27BDDC515BB836A00AF31E6 /* NSData+WaveToolsExtensions.h in Headers */,
+				F27BDDC915BB9BE000AF31E6 /* DWTWaveSilentChunk.h in Headers */,
+				F27BDDD115BBB73F00AF31E6 /* DWTWavePlaylistChunk.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +408,12 @@
 				F2EC844A15B64B510069145A /* DWTWaveGenericListChunk.m in Sources */,
 				F2EC844E15B64BA80069145A /* DWTWaveListInfoChunk.m in Sources */,
 				F2EC845215B64C250069145A /* DWTWaveStringChunk.m in Sources */,
+				F27BDDB915BB70E800AF31E6 /* DWTWaveListAdtlChunk.m in Sources */,
+				F27BDDBE15BB718400AF31E6 /* DWTWaveLabelChunk.m in Sources */,
+				F27BDDC215BB7D6B00AF31E6 /* DWTWaveCueChunk.m in Sources */,
+				F27BDDC615BB836A00AF31E6 /* NSData+WaveToolsExtensions.m in Sources */,
+				F27BDDCA15BB9BE000AF31E6 /* DWTWaveSilentChunk.m in Sources */,
+				F27BDDD215BBB73F00AF31E6 /* DWTWavePlaylistChunk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F202546415B615DC00083755 /* WaveToolsTests.m in Sources */,
+				F26B869915BB3D2400844298 /* WaveChunkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,11 +18,13 @@
 #import "DWTWaveUnknownChunk.h"
 #import "WaveToolsBundleUtils.h"
 #import "WaveToolsLocalization.h"
+#import <CoreFoundation/CoreFoundation.h>
+#import "NSData+WaveToolsExtensions.h"
 
 
-#define kDWTWaveChunkHeaderSizeCompileTimeConstant 8
-const NSUInteger kDWTWaveChunkHeaderSize = kDWTWaveChunkHeaderSizeCompileTimeConstant;
+const NSUInteger kDWTWaveChunkHeaderSize = 8;
 const NSUInteger kDWTWaveChunkIDSize = 4;
+const NSUInteger kDWTWaveChunkDataDumpLimit = 512;
 
 
 #pragma mark Utility Registration
@@ -39,6 +41,7 @@ static dispatch_once_t s_registeredChunkOnce;
     NSUInteger mChunkDataSize;
     DWTWaveChunk* mParentChunk;
     NSMutableArray* mSubchunks;
+    NSData* mDirectData;
 }
 
 + (NSString*) p_chunkTypeFromData:(NSData*)data;
@@ -65,7 +68,12 @@ static dispatch_once_t s_registeredChunkOnce;
 - (void) setChunkID:(NSString*)chunkID
 {
     if (chunkID != mChunkID) {
-        // TODO: Validate that [chunkID length] == kDWTWaveChunkIDSize.
+        if (chunkID != nil && [chunkID length] != kDWTWaveChunkIDSize) {
+            NSException* exc = [NSException exceptionWithName:NSInvalidArgumentException
+                                                       reason:DWTLocalizedString(@"Invalid chunk ID length.", @"Invalid chunk ID length.")
+                                                     userInfo:[NSDictionary dictionary]];
+            @throw exc;
+        }
         [chunkID retain];
         [mChunkID release];
         mChunkID = chunkID;
@@ -97,6 +105,7 @@ static dispatch_once_t s_registeredChunkOnce;
         }];
         [mSubchunks addObjectsFromArray:subchunks];
     }
+    [self recalculateDataSize];
 }
 
 - (NSUInteger) countOfSubchunks
@@ -111,13 +120,14 @@ static dispatch_once_t s_registeredChunkOnce;
 
 - (void) getSubchunks:(DWTWaveChunk**)buffer range:(NSRange)inRange
 {
-    return [mSubchunks getObjects:buffer range:inRange];
+    [mSubchunks getObjects:buffer range:inRange];
 }
 
 - (void) insertObject:(DWTWaveChunk*)object inSubchunksAtIndex:(NSUInteger)index
 {
     object.parentChunk = self;
     [mSubchunks insertObject:object atIndex:index];
+    [self recalculateDataSize];
 }
 
 - (void) removeObjectFromSubchunksAtIndex:(NSUInteger)index
@@ -125,6 +135,7 @@ static dispatch_once_t s_registeredChunkOnce;
     DWTWaveChunk* exChunk = [mSubchunks objectAtIndex:index];
     exChunk.parentChunk = nil;
     [mSubchunks removeObjectAtIndex:index];
+    [self recalculateDataSize];
 }
 
 - (void) replaceObjectInSubchunksAtIndex:(NSUInteger)index withObject:(DWTWaveChunk*)object
@@ -134,6 +145,7 @@ static dispatch_once_t s_registeredChunkOnce;
         exChunk.parentChunk = nil;
         object.parentChunk = self;
         [mSubchunks replaceObjectAtIndex:index withObject:object];
+        [self recalculateDataSize];
     }
 }
 
@@ -141,6 +153,7 @@ static dispatch_once_t s_registeredChunkOnce;
 {
     subchunk.parentChunk = self;
     [mSubchunks addObject:subchunk];
+    [self recalculateDataSize];
 }
 
 - (NSString*) moreInfo
@@ -148,14 +161,63 @@ static dispatch_once_t s_registeredChunkOnce;
     return DWTLocalizedString(@"RIFF Chunk", @"RIFF Chunk description");
 }
 
-#pragma mark Lifecycle
+- (NSData*) directData
+{
+    return mDirectData;
+}
+
+- (void) setDirectData:(NSData*)directData
+{
+    if (directData != mDirectData) {
+        [mDirectData release];
+        mDirectData = [directData retain];
+        [self recalculateDataSize];
+    }
+}
+
+- (NSString*) dataDump
+{
+    NSMutableString* dumpString = [[[NSMutableString alloc] init] autorelease];
+    NSUInteger dataIndex = 0;
+    NSUInteger dumpLimit = MIN([mDirectData length], kDWTWaveChunkDataDumpLimit);
+    if (dumpLimit > 0) {
+        unsigned char const* dataBytes = (unsigned char const*)[mDirectData bytes];
+        while (dataIndex < dumpLimit) {
+            if ((dataIndex % 16) == 0) {
+                [dumpString appendFormat:@"%08lx:", dataIndex];
+            } else if ((dataIndex % 8) == 0) {
+                [dumpString appendString:@" "];
+            }
+            [dumpString appendFormat:@" %02x", dataBytes[dataIndex]];
+            if ((dataIndex % 16) == 15 && dataIndex < (dumpLimit - 1)) {
+                [dumpString appendString:@"\n"];
+            }
+            ++dataIndex;
+        }
+        [dumpString appendString:@"\n"];
+    }
+    return dumpString;
+}
+
+#pragma mark - Lifecycle
+
++ (NSString*) defaultChunkID
+{
+    return @"RIFF";
+}
+
++ (NSData*) emptyChunkData
+{
+    unsigned char emptyChunkBytes[] = { 'R', 'I', 'F', 'F', 0, 0, 0, 0 };
+    NSData* emptyChunkData = nil;
+    [[[self defaultChunkID] dataUsingEncoding:NSISOLatin1StringEncoding] getBytes:&emptyChunkBytes[0] length:kDWTWaveChunkIDSize];
+    emptyChunkData = [NSData dataWithBytes:&emptyChunkBytes[0] length:sizeof(emptyChunkBytes)];
+    return emptyChunkData;
+}
 
 - (id) init
 {
-    static unsigned char s_emptyChunkData[kDWTWaveChunkHeaderSizeCompileTimeConstant] = { 'R', 'I', 'F', 'F', 0, 0, 0, 0 };
-    
-    NSMutableData* emptyChunkData = [NSMutableData dataWithBytesNoCopy:&s_emptyChunkData[0] length:sizeof(s_emptyChunkData) freeWhenDone:NO];
-    return [self initWithData:emptyChunkData];
+    return [self initWithData:[[self class] emptyChunkData]];
 }
 
 - (id) initWithData:(NSData*)data
@@ -173,17 +235,27 @@ static dispatch_once_t s_registeredChunkOnce;
                 mChunkID = [[[self class] p_chunkTypeFromData:data] retain];
                 mSubchunks = [[NSMutableArray alloc] init];
                 NSUInteger subchunkOffset = [[self class] autoProcessSubchunkOffset];
-                // Gotta be enough data for at least one subchunk header in there.
-                if (subchunkOffset != NSUIntegerMax && [data length] > (subchunkOffset + kDWTWaveChunkHeaderSize)) {
-                    const void* bytes = [data bytes];
-                    const void* base = bytes + subchunkOffset + kDWTWaveChunkHeaderSize;
-                    NSData* subchunkData = [[NSData alloc] initWithBytesNoCopy:(void*)base length:(mChunkDataSize - subchunkOffset) freeWhenDone:NO];
-                    NSArray* subchunks = [[self class] processChunksInData:subchunkData];
-                    [subchunks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop) {
-                        ((DWTWaveChunk*)obj).parentChunk = self;
-                    }];
-                    [mSubchunks addObjectsFromArray:subchunks];
-                    [subchunkData release];
+                if (subchunkOffset == NSUIntegerMax) {
+                    if (mChunkDataSize > 0) {
+                        NSRange subdataRange = NSMakeRange(kDWTWaveChunkHeaderSize, mChunkDataSize);
+                        mDirectData = [[data subdataWithRange:subdataRange] retain];
+                    }
+                } else {
+                    // Gotta be enough data for at least one subchunk header in there.
+                    if ([data length] > (subchunkOffset + kDWTWaveChunkHeaderSize)) {
+                        NSRange subdataRange = NSMakeRange(kDWTWaveChunkHeaderSize, subchunkOffset);
+                        mDirectData = [[data subdataWithRange:subdataRange] retain];
+                        NSData* subchunkData = [data subdataWithRange:NSMakeRange(kDWTWaveChunkHeaderSize + subchunkOffset, mChunkDataSize - subchunkOffset)];
+                        NSArray* subchunks = [[self class] processChunksInData:subchunkData];
+                        [subchunks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop) {
+                            ((DWTWaveChunk*)obj).parentChunk = self;
+                        }];
+                        [mSubchunks addObjectsFromArray:subchunks];
+                    } else if (mChunkDataSize > 0) {
+                        // We're not making any subchunks. Just grab the data as direct.
+                        NSRange subdataRange = NSMakeRange(kDWTWaveChunkHeaderSize, mChunkDataSize);
+                        mDirectData = [[data subdataWithRange:subdataRange] retain];
+                    }
                 }
             }
         }
@@ -196,8 +268,76 @@ static dispatch_once_t s_registeredChunkOnce;
     [mChunkID release];
     mChunkID = nil;
     mChunkDataSize = 0;
-    self.subchunks = nil;
+    [mSubchunks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop) {
+        DWTWaveChunk* chunk = (DWTWaveChunk*)obj;
+        chunk.parentChunk = nil;
+    }];
+    [mSubchunks release];
+    mSubchunks = nil;
+    [mDirectData release];
+    mDirectData = nil;
     [super dealloc];
+}
+
+#pragma mark - Misc.
+
+- (void) recalculateDataSize
+{
+    NSUInteger newSize = [mDirectData length];
+    for (DWTWaveChunk* chunk in mSubchunks) {
+        newSize += kDWTWaveChunkHeaderSize + [chunk chunkDataSize];
+    }
+    mChunkDataSize = newSize;
+    if (mParentChunk) {
+        [mParentChunk recalculateDataSize];
+    }
+}
+
+- (NSData*) data
+{
+    [self recalculateDataSize];
+    NSUInteger dataLength = kDWTWaveChunkHeaderSize + mChunkDataSize;
+    NSMutableData* data = [[NSMutableData alloc] initWithLength:dataLength];
+    if (![self writeDataToBytes:[data mutableBytes] available:dataLength]) {
+        [data release];
+        data = nil;
+    }
+    return [data autorelease];
+}
+
+- (BOOL) writeDataToBytes:(void *)bytes available:(NSUInteger)availableSpace
+{
+    BOOL result = NO;
+    [self recalculateDataSize];
+    if ((availableSpace >= kDWTWaveChunkHeaderSize + mChunkDataSize) && (mChunkDataSize < UINT32_MAX)) {
+        void* buffer = bytes;
+        // 1. Write chunk ID to data.
+        NSData* chunkIDData = [mChunkID dataUsingEncoding:NSISOLatin1StringEncoding];
+        if ([chunkIDData length] == kDWTWaveChunkIDSize) {
+            [chunkIDData getBytes:buffer length:kDWTWaveChunkIDSize];
+            buffer += kDWTWaveChunkIDSize;
+            availableSpace -= kDWTWaveChunkIDSize;
+            uint32_t chunkLength = (uint32_t)mChunkDataSize;
+            *((uint32_t*)buffer) = CFSwapInt32HostToLittle(chunkLength);
+            buffer += sizeof(uint32_t);
+            availableSpace -= sizeof(uint32_t);
+            [mDirectData getBytes:buffer length:availableSpace];
+            buffer += [mDirectData length];
+            availableSpace -= [mDirectData length];
+            BOOL ok = YES;
+            for (DWTWaveChunk* subchunk in mSubchunks) {
+                ok = [subchunk writeDataToBytes:buffer available:availableSpace];
+                if (!ok) break;
+                NSUInteger bytesWritten = kDWTWaveChunkHeaderSize + [subchunk chunkDataSize];
+                buffer += bytesWritten;
+                availableSpace -= bytesWritten;
+            }
+            if (ok) {
+                result = YES;
+            }
+        }
+    }
+    return result;
 }
 
 #pragma mark - Registration
@@ -227,7 +367,7 @@ static dispatch_once_t s_registeredChunkOnce;
 
 + (void) registerChunkClasses
 {
-    NSLog(@"Loading chunk classes...");
+    //NSLog(@"Loading chunk classes...");
     NSUInteger chunkTypeCount = 0;
     NSUInteger chunkClassCount = 0;
     NSUInteger chunkClassOK = 0;
@@ -258,18 +398,18 @@ static dispatch_once_t s_registeredChunkOnce;
                 continue;
             }
             ++chunkClassCount;
-            NSString* chunkClassName = (NSString*)[chunkDict objectForKey:chunkType];
+            NSString* chunkClassName = (NSString*)chunkClassObject;
             Class chunkClass = NSClassFromString(chunkClassName);
             if (chunkClass) {
                 [self p_registerChunkClass:chunkClass forType:chunkType];
-                NSLog(@"Registered class '%@' for chunk type '%@'.", chunkClassName, chunkType);
+                //NSLog(@"Registered class '%@' for chunk type '%@'.", chunkClassName, chunkType);
                 ++chunkClassOK;
             } else {
                 NSLog(@"Failed to load class '%@' for chunk type '%@'.", chunkClassName, chunkType);
             }
         }
     }
-    NSLog(@"Registered %lu chunk classes (of %lu attempted) for %lu chunk types.", chunkClassOK, chunkClassCount, chunkTypeCount);
+    //NSLog(@"Registered %lu chunk classes (of %lu attempted) for %lu chunk types.", chunkClassOK, chunkClassCount, chunkTypeCount);
 }
 
 + (BOOL) canHandleChunkWithData:(NSData*)data
@@ -284,23 +424,19 @@ static dispatch_once_t s_registeredChunkOnce;
     NSMutableArray* chunks = [NSMutableArray array];
     NSUInteger dataProcessed = 0;
     if ([data length] >= kDWTWaveChunkHeaderSize) {
-        const void* bytes = [data bytes];
         while (dataProcessed < ([data length] - kDWTWaveChunkHeaderSize)) {
             NSUInteger dataRemaining = [data length] - dataProcessed;
-            const void* base = bytes + dataProcessed;
             // Create a temporary NSData that extends to the rest of the data.
-            NSData* chunkData = [[NSData alloc] initWithBytesNoCopy:(void*)base length:dataRemaining freeWhenDone:NO];
+            NSData* chunkData = [data subdataWithRange:NSMakeRange(dataProcessed, dataRemaining)];
             NSUInteger chunkDataLength = [self p_chunkLengthFromData:chunkData];
             if (chunkDataLength > dataRemaining) {
                 NSLog(@"Error processing data stream: Chunk size %lu, with only %lu bytes remaining in stream.", chunkDataLength, dataRemaining);
                 // Just stop now.
                 break;
             }
-            [chunkData release];
-            // Release the temporary data and create one with the real chunk length.
-            chunkData = [[NSData alloc] initWithBytesNoCopy:(void*)base length:(chunkDataLength + kDWTWaveChunkHeaderSize) freeWhenDone:NO];
+            // Now create one with the real chunk length.
+            chunkData = [data subdataWithRange:NSMakeRange(dataProcessed, chunkDataLength + kDWTWaveChunkHeaderSize)];
             DWTWaveChunk* chunk = [self chunkForData:chunkData];
-            [chunkData release];
             [chunks addObject:chunk];
             dataProcessed += (((chunkDataLength + kDWTWaveChunkHeaderSize) + 1) & ~1);
         }
@@ -311,44 +447,6 @@ static dispatch_once_t s_registeredChunkOnce;
 + (NSUInteger) autoProcessSubchunkOffset
 {
     return 4;
-}
-
-+ (NSString*) read4CharFromData:(NSData*)data atOffset:(NSUInteger)offset
-{
-    NSString* result = nil;
-    if ([data length] >= (offset + kDWTWaveChunkIDSize)) {
-        const void* bytes = [data bytes];
-        result = [[[NSString alloc] initWithBytes:(bytes + offset) length:kDWTWaveChunkIDSize encoding:NSISOLatin1StringEncoding] autorelease];
-    }
-    return result;
-}
-
-+ (uint32_t) readUint32FromData:(NSData*)data atOffset:(NSUInteger)offset
-{
-    uint32_t result = 0;
-    if ([data length] >= (offset + sizeof(uint32_t))) {
-        uint32_t* pUint = (uint32_t*)([data bytes] + offset);
-#if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
-        result = *pUint;
-#else
-        result = OSSwapInt32(*pUint);
-#endif
-    }
-    return result;
-}
-
-+ (uint16_t) readUint16FromData:(NSData*)data atOffset:(NSUInteger)offset
-{
-    uint16_t result = 0;
-    if ([data length] >= (offset + sizeof(uint16_t))) {
-        uint16_t* pUint = (uint16_t*)([data bytes] + offset);
-#if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
-        result = *pUint;
-#else
-        result = OSSwapInt16(*pUint);
-#endif
-    }
-    return result;
 }
 
 #pragma mark - Debugging
@@ -384,12 +482,12 @@ static dispatch_once_t s_registeredChunkOnce;
 
 + (NSString*) p_chunkTypeFromData:(NSData*)data
 {
-    return [self read4CharFromData:data atOffset:0];
+    return [data read4CharAtOffset:0];
 }
 
 + (NSUInteger) p_chunkLengthFromData:(NSData*)data
 {
-    return (NSUInteger)[self readUint32FromData:data atOffset:kDWTWaveChunkIDSize];
+    return [data readUint32AtOffset:kDWTWaveChunkIDSize];
 }
 
 + (void) p_registerChunkClass:(Class)chunkClass forType:(NSString*)chunkType

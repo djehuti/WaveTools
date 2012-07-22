@@ -9,7 +9,15 @@
 	<key>fmt </key>
 	<string>DWTWaveFmtChunk</string>
 	<key>LIST</key>
-	<string>DWTWaveListInfoChunk</string>
+	<array>
+		<string>DWTWaveListInfoChunk</string>
+		<string>DWTWaveListAdtlChunk</string>
+	</array>
+	<key>list</key>
+	<array>
+		<string>DWTWaveListInfoChunk</string>
+		<string>DWTWaveListAdtlChunk</string>
+	</array>
 	<key>ICMS</key>
 	<string>DWTWaveStringChunk</string>
 	<key>IART</key>
@@ -24,5 +32,17 @@
 	<string>DWTWaveStringChunk</string>
 	<key>ISRC</key>
 	<string>DWTWaveStringChunk</string>
+	<key>labl</key>
+	<string>DWTWaveLabelChunk</string>
+	<key>note</key>
+	<string>DWTWaveLabelChunk</string>
+	<key>cue </key>
+	<string>DWTWaveCueChunk</string>
+	<key>fact</key>
+	<string>DWTWaveUnknownChunk</string>
+	<key>wavl</key>
+	<string>DWTWaveGenericListChunk</string>
+	<key>plst</key>
+	<string>DWTWavePlaylistChunk</string>
 </dict>
 </plist>

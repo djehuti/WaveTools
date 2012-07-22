@@ -9,15 +9,17 @@
 
 #import "DWTWaveFmtChunk.h"
 #import "WaveToolsLocalization.h"
+#import "NSData+WaveToolsExtensions.h"
 
 
-#define kDWTWaveFmtChunkCompressionCodeOffset           8
-#define kDWTWaveFmtChunkNumChannelsOffset               10
-#define kDWTWaveFmtChunkSampleRateOffset                12
-#define kDWTWaveFmtChunkAverageBytesPerSecondOffset     16
-#define kDWTWaveFmtChunkBlockAlignOffset                20
-#define kDWTWaveFmtChunkBitsPerSampleOffset             22
-#define kDWTWaveFmtChunkExtraFormatBytesOffset          24
+#define kDWTWaveFmtChunkCompressionCodeOffset           0
+#define kDWTWaveFmtChunkNumChannelsOffset               2
+#define kDWTWaveFmtChunkSampleRateOffset                4
+#define kDWTWaveFmtChunkAverageBytesPerSecondOffset     8
+#define kDWTWaveFmtChunkBlockAlignOffset                12
+#define kDWTWaveFmtChunkBitsPerSampleOffset             14
+#define kDWTWaveFmtChunkExtraFormatBytesOffset          16
+#define kDWTWaveFmtChunkMinimumSize                     16
 
 @interface DWTWaveFmtChunk ()
 {
@@ -34,6 +36,7 @@
 
 @implementation DWTWaveFmtChunk
 
+// TODO: Separate all of these into getters/setters so that the setters can recalculate the data.
 @synthesize compressionCode = mCompressionCode;
 @synthesize numChannels = mNumChannels;
 @synthesize sampleRate = mSampleRate;
@@ -68,17 +71,44 @@
     return description;
 }
 
++ (NSData*) emptyChunkData
+{
+    static unsigned char s_emptyChunkBytes[] = {
+        'f', 'm', 't', ' ', 18, 0, 0, 0,
+        1, 0, // compression code 1
+        2, 0, // 2 channels
+        68, 172, 0, 0, // 44100
+        0, 238, 2, 0, // average bytes per second (192k)
+        4, 0, // 4 bytes per sample slice (block align)
+        16, 0, // 16 bits per sample
+        0, 0 // 0 extra format bytes
+    };
+    static NSData* s_emptyChunkData = nil;
+    static dispatch_once_t s_emptyChunkOnce;
+    dispatch_once(&s_emptyChunkOnce, ^{
+        s_emptyChunkData = [[NSData alloc] initWithBytesNoCopy:&s_emptyChunkBytes[0] length:sizeof(s_emptyChunkBytes) freeWhenDone:NO];
+    });
+    return s_emptyChunkData;
+}
+
++ (BOOL) canHandleChunkWithData:(NSData *)data
+{
+    return ([data length] >= (kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkMinimumSize));
+}
+
 - (id) initWithData:(NSData*)data
 {
     if ((self = [super initWithData:data])) {
-        Class c = [self class];
-        mCompressionCode       = [c readUint16FromData:data atOffset:kDWTWaveFmtChunkCompressionCodeOffset];
-        mNumChannels           = [c readUint16FromData:data atOffset:kDWTWaveFmtChunkNumChannelsOffset];
-        mSampleRate            = [c readUint32FromData:data atOffset:kDWTWaveFmtChunkSampleRateOffset];
-        mAverageBytesPerSecond = [c readUint32FromData:data atOffset:kDWTWaveFmtChunkAverageBytesPerSecondOffset];
-        mBlockAlign            = [c readUint16FromData:data atOffset:kDWTWaveFmtChunkBlockAlignOffset];
-        mBitsPerSample         = [c readUint16FromData:data atOffset:kDWTWaveFmtChunkBitsPerSampleOffset];
-        mExtraFormatBytes      = [c readUint16FromData:data atOffset:kDWTWaveFmtChunkExtraFormatBytesOffset];
+        NSData* directData = [self directData];
+        mCompressionCode       = [directData readUint16AtOffset:kDWTWaveFmtChunkCompressionCodeOffset];
+        mNumChannels           = [directData readUint16AtOffset:kDWTWaveFmtChunkNumChannelsOffset];
+        mSampleRate            = [directData readUint32AtOffset:kDWTWaveFmtChunkSampleRateOffset];
+        mAverageBytesPerSecond = [directData readUint32AtOffset:kDWTWaveFmtChunkAverageBytesPerSecondOffset];
+        mBlockAlign            = [directData readUint16AtOffset:kDWTWaveFmtChunkBlockAlignOffset];
+        mBitsPerSample         = [directData readUint16AtOffset:kDWTWaveFmtChunkBitsPerSampleOffset];
+        if ([directData length] >= (kDWTWaveFmtChunkExtraFormatBytesOffset + sizeof(uint16_t))) {
+            mExtraFormatBytes      = [directData readUint16AtOffset:kDWTWaveFmtChunkExtraFormatBytesOffset];
+        }
     }
     return self;
 }

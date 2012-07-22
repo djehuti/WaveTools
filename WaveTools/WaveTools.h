@@ -15,4 +15,9 @@
 #import <WaveTools/DWTWaveFmtChunk.h>
 #import <WaveTools/DWTWaveGenericListChunk.h>
 #import <WaveTools/DWTWaveListInfoChunk.h>
+#import <WaveTools/DWTWaveListAdtlChunk.h>
 #import <WaveTools/DWTWaveStringChunk.h>
+#import <WaveTools/DWTWaveLabelChunk.h>
+#import <WaveTools/DWTWaveCueChunk.h>
+#import <WaveTools/DWTWaveSilentChunk.h>
+#import <WaveTools/DWTWavePlaylistChunk.h>

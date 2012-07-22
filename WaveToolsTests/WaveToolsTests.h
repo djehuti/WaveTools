@@ -6,7 +6,9 @@
 //  Copyright 2012 Ben Cox. All rights reserved.
 //
 
+
 #import <SenTestingKit/SenTestingKit.h>
+
 
 @interface WaveToolsTests : SenTestCase
 
