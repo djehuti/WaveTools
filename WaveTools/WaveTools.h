@@ -9,6 +9,7 @@
 
 #import <WaveTools/WaveToolsBundleUtils.h>
 #import <WaveTools/DWTMath.h>
+#import <WaveTools/NSData+WaveToolsExtensions.h>
 #import <WaveTools/DWTWaveChunk.h>
 #import <WaveTools/DWTWaveUnknownChunk.h>
 #import <WaveTools/DWTWaveDataChunk.h>

@@ -111,8 +111,6 @@
     riffChunk.chunkID = @"RIFF";
     riffChunk.directData = [@"WAVE" dataUsingEncoding:NSISOLatin1StringEncoding];
     DWTWaveListInfoChunk* listChunk = [[[DWTWaveListInfoChunk alloc] init] autorelease];
-    listChunk.chunkID = @"LIST";
-    listChunk.directData = [@"INFO" dataUsingEncoding:NSISOLatin1StringEncoding]; // TODO: This should be part of the list info chunk constructor.
     [riffChunk appendSubchunk:listChunk];
     DWTWaveStringChunk* iartChunk = [[[DWTWaveStringChunk alloc] init] autorelease];
     iartChunk.chunkID = @"IART";

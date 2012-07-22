@@ -57,6 +57,19 @@ static void DWTNotEnoughData(void)
     return [[[NSString alloc] initWithBytes:([self bytes] + offset) length:kDWTWaveChunkIDSize encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
+- (NSString*) readNulTerminatedStringAtOffset:(NSUInteger)offset
+{
+    if ([self length] < offset) {
+        DWTNotEnoughData();
+    }
+    if ([self length] > (offset + 1)) {
+        NSData* subdata = [self subdataWithRange:NSMakeRange(offset, [self length] - 1 - offset)];
+        return [[[NSString alloc] initWithData:subdata encoding:NSISOLatin1StringEncoding] autorelease];
+    } else {
+        return @"";
+    }
+}
+
 @end
 
 #pragma mark -
@@ -99,6 +112,15 @@ static void DWTNotEnoughData(void)
         }
         [self replaceBytesInRange:replaceRange withBytes:[stringData bytes] length:kDWTWaveChunkIDSize];
     }
+}
+
+- (void) writeNulTerminatedString:(NSString*)value atOffset:(NSUInteger)offset
+{
+    NSData* stringData = [value dataUsingEncoding:NSISOLatin1StringEncoding];
+    [self setLength:offset];
+    [self appendData:stringData];
+    unsigned char zero = 0;
+    [self appendBytes:&zero length:1];
 }
 
 @end

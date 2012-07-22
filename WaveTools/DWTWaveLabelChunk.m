@@ -85,12 +85,7 @@
             self = nil;
         } else {
             mCuePointID = [self.directData readUint32AtOffset:0];
-            if ([self.directData length] > sizeof(uint32_t)) {
-                const void* bytes = [self.directData bytes];
-                mStringValue = [[NSString alloc] initWithBytes:bytes length:([self.directData length] - 1) encoding:NSISOLatin1StringEncoding];
-            } else {
-                mStringValue = [[NSString alloc] init];
-            }
+            mStringValue = [[self.directData readNulTerminatedStringAtOffset:sizeof(uint32_t)] retain];
         }
     }
     return self;
@@ -135,13 +130,9 @@
 
 - (void) p_setupData
 {
-    NSData* stringData = [mStringValue dataUsingEncoding:NSISOLatin1StringEncoding];
-    NSMutableData* newData = [NSMutableData dataWithCapacity:sizeof(uint32_t) + [stringData length] + 1];
-    uint32_t extCuePointId = CFSwapInt32HostToLittle(mCuePointID);
-    [newData appendBytes:&extCuePointId length:sizeof(extCuePointId)];
-    [newData appendData:stringData];
-    unsigned char const zero = 0;
-    [newData appendBytes:(const void *)&zero length:1];
+    NSMutableData* newData = [NSMutableData dataWithLength:0];
+    [newData writeUint16:mCuePointID atOffset:0];
+    [newData writeNulTerminatedString:mStringValue atOffset:sizeof(uint32_t)];
     self.directData = newData;
 }
 

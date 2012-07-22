@@ -8,6 +8,7 @@
 
 
 #import "DWTWaveStringChunk.h"
+#import "NSData+WaveToolsExtensions.h"
 
 
 @interface DWTWaveStringChunk ()
@@ -32,11 +33,8 @@
     if (stringValue != mStringValue && ![stringValue isEqualToString:mStringValue]) {
         [mStringValue release];
         mStringValue = [stringValue retain];
-        NSData* stringData = [mStringValue dataUsingEncoding:NSISOLatin1StringEncoding];
-        NSMutableData* newData = [NSMutableData dataWithCapacity:[stringData length] + 1];
-        [newData appendData:stringData];
-        unsigned char const zero = 0;
-        [newData appendBytes:(const void *)&zero length:1];
+        NSMutableData* newData = [NSMutableData dataWithLength:0];
+        [newData writeNulTerminatedString:mStringValue atOffset:0];
         self.directData = newData;
     }
 }
@@ -46,12 +44,7 @@
 - (id) initWithData:(NSData*)data
 {
     if ((self = [super initWithData:data])) {
-        if ([self.directData length] > 0) {
-            const void* bytes = [self.directData bytes];
-            mStringValue = [[NSString alloc] initWithBytes:bytes length:([self.directData length] - 1) encoding:NSISOLatin1StringEncoding];
-        } else {
-            mStringValue = [[NSString alloc] init];
-        }
+        mStringValue = [[self.directData readNulTerminatedStringAtOffset:0] retain];
     }
     return self;
 }

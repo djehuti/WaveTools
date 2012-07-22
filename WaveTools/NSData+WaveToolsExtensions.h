@@ -15,6 +15,7 @@
 - (uint32_t) readUint32AtOffset:(NSUInteger)offset;
 - (uint16_t) readUint16AtOffset:(NSUInteger)offset;
 - (NSString*) read4CharAtOffset:(NSUInteger)offset;
+- (NSString*) readNulTerminatedStringAtOffset:(NSUInteger)offset;
 
 @end
 
@@ -24,5 +25,6 @@
 - (void) writeUint32:(uint32_t)value atOffset:(NSUInteger)offset;
 - (void) writeUint16:(uint16_t)value atOffset:(NSUInteger)offset;
 - (void) write4Char:(NSString*)value atOffset:(NSUInteger)offset;
+- (void) writeNulTerminatedString:(NSString*)value atOffset:(NSUInteger)offset;
 
 @end
