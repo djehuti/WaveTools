@@ -44,5 +44,7 @@
 	<string>DWTWaveGenericListChunk</string>
 	<key>plst</key>
 	<string>DWTWavePlaylistChunk</string>
+	<key>regn</key>
+	<string>DWTWaveRegnChunk</string>
 </dict>
 </plist>
