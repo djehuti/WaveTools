@@ -33,6 +33,8 @@
 		F27BDDDF15BC414200AF31E6 /* WaveNSDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDDE15BC414200AF31E6 /* WaveNSDataTests.m */; };
 		F27BDDE315BC4C0800AF31E6 /* DWTWaveRegnChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDE115BC4C0800AF31E6 /* DWTWaveRegnChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F27BDDE415BC4C0800AF31E6 /* DWTWaveRegnChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDE215BC4C0800AF31E6 /* DWTWaveRegnChunk.m */; };
+		F27BDDE715BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDE515BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDDE815BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDE615BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.m */; };
 		F2EC842515B61A910069145A /* WaveTools.h in Headers */ = {isa = PBXBuildFile; fileRef = F202544C15B615DC00083755 /* WaveTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2EC842915B61ABB0069145A /* WaveToolsLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */; };
 		F2EC842D15B61BEE0069145A /* WaveToolsBundleUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -100,6 +102,8 @@
 		F27BDDDE15BC414200AF31E6 /* WaveNSDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveNSDataTests.m; sourceTree = "<group>"; };
 		F27BDDE115BC4C0800AF31E6 /* DWTWaveRegnChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveRegnChunk.h; sourceTree = "<group>"; };
 		F27BDDE215BC4C0800AF31E6 /* DWTWaveRegnChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveRegnChunk.m; sourceTree = "<group>"; };
+		F27BDDE515BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveLabeledTextChunk.h; sourceTree = "<group>"; };
+		F27BDDE615BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveLabeledTextChunk.m; sourceTree = "<group>"; };
 		F28A6A1515B65CC400B4FFD0 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsLocalization.h; sourceTree = "<group>"; };
 		F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsBundleUtils.h; sourceTree = "<group>"; };
@@ -263,6 +267,8 @@
 				F27BDDD015BBB73F00AF31E6 /* DWTWavePlaylistChunk.m */,
 				F27BDDE115BC4C0800AF31E6 /* DWTWaveRegnChunk.h */,
 				F27BDDE215BC4C0800AF31E6 /* DWTWaveRegnChunk.m */,
+				F27BDDE515BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.h */,
+				F27BDDE615BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.m */,
 			);
 			name = WaveChunk;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				F27BDDC915BB9BE000AF31E6 /* DWTWaveSilentChunk.h in Headers */,
 				F27BDDD115BBB73F00AF31E6 /* DWTWavePlaylistChunk.h in Headers */,
 				F27BDDE315BC4C0800AF31E6 /* DWTWaveRegnChunk.h in Headers */,
+				F27BDDE715BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +434,7 @@
 				F27BDDCA15BB9BE000AF31E6 /* DWTWaveSilentChunk.m in Sources */,
 				F27BDDD215BBB73F00AF31E6 /* DWTWavePlaylistChunk.m in Sources */,
 				F27BDDE415BC4C0800AF31E6 /* DWTWaveRegnChunk.m in Sources */,
+				F27BDDE815BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

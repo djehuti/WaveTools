@@ -46,5 +46,7 @@
 	<string>DWTWavePlaylistChunk</string>
 	<key>regn</key>
 	<string>DWTWaveRegnChunk</string>
+	<key>ltxt</key>
+	<string>DWTWaveLabeledTextChunk</string>
 </dict>
 </plist>

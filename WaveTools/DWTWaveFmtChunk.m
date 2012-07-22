@@ -18,8 +18,10 @@
 #define kDWTWaveFmtChunkAverageBytesPerSecondOffset     8
 #define kDWTWaveFmtChunkBlockAlignOffset                12
 #define kDWTWaveFmtChunkBitsPerSampleOffset             14
-#define kDWTWaveFmtChunkExtraFormatBytesOffset          16
+#define kDWTWaveFmtChunkExtraFormatBytesLengthOffset    16
+#define kDWTWaveFmtChunkExtraFormatBytesOffset          18
 #define kDWTWaveFmtChunkMinimumSize                     16
+
 
 @interface DWTWaveFmtChunk ()
 {
@@ -29,20 +31,115 @@
     uint32_t mAverageBytesPerSecond;
     uint16_t mBlockAlign;
     uint16_t mBitsPerSample;
-    uint16_t mExtraFormatBytes;
+    NSData* mExtraFormatBytes;
 }
+
+- (void) p_fixupData;
+
 @end
 
 
 @implementation DWTWaveFmtChunk
 
+- (uint16_t) compressionCode
+{
+    return mCompressionCode;
+}
+
+- (void) setCompressionCode:(uint16_t)compressionCode
+{
+    if (compressionCode != mCompressionCode) {
+        mCompressionCode = compressionCode;
+        [self p_fixupData];
+    }
+}
+
+- (uint16_t) numChannels
+{
+    return mNumChannels;
+}
+
+- (void) setNumChannels:(uint16_t)numChannels
+{
+    if (numChannels != mNumChannels) {
+        mNumChannels = numChannels;
+        [self p_fixupData];
+    }
+}
+
+- (uint32_t) sampleRate
+{
+    return mSampleRate;
+}
+
+- (void) setSampleRate:(uint32_t)sampleRate
+{
+    if (sampleRate != mSampleRate) {
+        mSampleRate = sampleRate;
+        [self p_fixupData];
+    }
+}
+
+- (uint32_t) averageBytesPerSecond
+{
+    return mAverageBytesPerSecond;
+}
+
+- (void) setAverageBytesPerSecond:(uint32_t)averageBytesPerSecond
+{
+    if (averageBytesPerSecond != mAverageBytesPerSecond) {
+        mAverageBytesPerSecond = averageBytesPerSecond;
+        [self p_fixupData];
+    }
+}
+
+- (uint16_t) blockAlign
+{
+    return mBlockAlign;
+}
+
+- (void) setBlockAlign:(uint16_t)blockAlign
+{
+    if (blockAlign != mBlockAlign) {
+        mBlockAlign = blockAlign;
+        [self p_fixupData];
+    }
+}
+
+- (uint16_t) bitsPerSample
+{
+    return mBitsPerSample;
+}
+
+- (void) setBitsPerSample:(uint16_t)bitsPerSample
+{
+    if (bitsPerSample != mBitsPerSample) {
+        mBitsPerSample = bitsPerSample;
+        [self p_fixupData];
+    }
+}
+
+- (NSData*) extraFormatBytes
+{
+    return mExtraFormatBytes;
+}
+
+- (void) setExtraFormatBytes:(NSData*)extraFormatBytes
+{
+    if (extraFormatBytes != mExtraFormatBytes) {
+        if ([extraFormatBytes length] > UINT16_MAX) {
+            NSException* exc = [NSException exceptionWithName:NSInvalidArgumentException
+                                                       reason:DWTLocalizedString(@"Extra format data cannot exceed 65535 bytes.", @"Extra format bytes length too long message")
+                                                     userInfo:[NSDictionary dictionary]];
+            @throw exc;
+        }
+        [mExtraFormatBytes release];
+        mExtraFormatBytes = [extraFormatBytes retain];
+        [self p_fixupData];
+    }
+}
+
 // TODO: Separate all of these into getters/setters so that the setters can recalculate the data.
-@synthesize compressionCode = mCompressionCode;
-@synthesize numChannels = mNumChannels;
-@synthesize sampleRate = mSampleRate;
-@synthesize averageBytesPerSecond = mAverageBytesPerSecond;
-@synthesize blockAlign = mBlockAlign;
-@synthesize bitsPerSample = mBitsPerSample;
 @synthesize extraFormatBytes = mExtraFormatBytes;
 
 - (NSString*) compressionDescription
@@ -74,14 +171,14 @@
 + (NSData*) emptyChunkData
 {
     static unsigned char s_emptyChunkBytes[] = {
-        'f', 'm', 't', ' ', 18, 0, 0, 0,
+        'f', 'm', 't', ' ', 16, 0, 0, 0,
         1, 0, // compression code 1
         2, 0, // 2 channels
         68, 172, 0, 0, // 44100
         0, 238, 2, 0, // average bytes per second (192k)
         4, 0, // 4 bytes per sample slice (block align)
         16, 0, // 16 bits per sample
-        0, 0 // 0 extra format bytes
+               // extra format bytes not present
     };
     static NSData* s_emptyChunkData = nil;
     static dispatch_once_t s_emptyChunkOnce;
@@ -93,21 +190,46 @@
 
 + (BOOL) canHandleChunkWithData:(NSData *)data
 {
-    return ([data length] >= (kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkMinimumSize));
+    BOOL ok = NO;
+    NSUInteger dataLength = [data length];
+
+    if (dataLength >= (kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkMinimumSize)) {
+        if (dataLength == (kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkMinimumSize)) {
+            // No extra format bytes.
+            ok = YES;
+        } else {
+            // There are extra format bytes. Better be at least long enough for the length field.
+            if (dataLength >= (kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkExtraFormatBytesLengthOffset + sizeof(uint16_t))) {
+                // It's long enough for the length field. Get the length.
+                NSUInteger extraFormatLength = [data readUint16AtOffset:kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkExtraFormatBytesLengthOffset];
+                // Better be at least long enough for that many bytes.
+                ok = (dataLength >= (kDWTWaveChunkHeaderSize + kDWTWaveFmtChunkExtraFormatBytesOffset + extraFormatLength));
+            }
+        }
+    }
+
+    return ok;
 }
 
 - (id) initWithData:(NSData*)data
 {
     if ((self = [super initWithData:data])) {
-        NSData* directData = [self directData];
+        NSData* directData = self.directData;
         mCompressionCode       = [directData readUint16AtOffset:kDWTWaveFmtChunkCompressionCodeOffset];
         mNumChannels           = [directData readUint16AtOffset:kDWTWaveFmtChunkNumChannelsOffset];
         mSampleRate            = [directData readUint32AtOffset:kDWTWaveFmtChunkSampleRateOffset];
         mAverageBytesPerSecond = [directData readUint32AtOffset:kDWTWaveFmtChunkAverageBytesPerSecondOffset];
         mBlockAlign            = [directData readUint16AtOffset:kDWTWaveFmtChunkBlockAlignOffset];
         mBitsPerSample         = [directData readUint16AtOffset:kDWTWaveFmtChunkBitsPerSampleOffset];
-        if ([directData length] >= (kDWTWaveFmtChunkExtraFormatBytesOffset + sizeof(uint16_t))) {
-            mExtraFormatBytes      = [directData readUint16AtOffset:kDWTWaveFmtChunkExtraFormatBytesOffset];
+        if ([directData length] >= (kDWTWaveFmtChunkExtraFormatBytesLengthOffset + sizeof(uint16_t))) {
+            NSUInteger extraFormatLength = (NSUInteger)[directData readUint16AtOffset:kDWTWaveFmtChunkExtraFormatBytesLengthOffset];
+            if ([directData length] < (kDWTWaveFmtChunkExtraFormatBytesOffset + extraFormatLength)) {
+                [self release];
+                self = nil;
+            } else {
+                NSRange extraFormatRange = NSMakeRange(kDWTWaveFmtChunkExtraFormatBytesOffset, extraFormatLength);
+                mExtraFormatBytes = [[directData subdataWithRange:extraFormatRange] retain];
+            }
         }
     }
     return self;
@@ -126,6 +248,28 @@
             (unsigned int) mNumChannels, (unsigned int) mBitsPerSample,
             (unsigned int) mSampleRate, (unsigned int) mAverageBytesPerSecond,
             [self compressionDescription]];
+}
+
+#pragma mark - Private Methods
+
+- (void) p_fixupData
+{
+    NSUInteger dataLength = kDWTWaveFmtChunkMinimumSize;
+    if (mExtraFormatBytes) {
+        dataLength += 2 + [mExtraFormatBytes length];
+    }
+    NSMutableData* newData = [NSMutableData dataWithCapacity:dataLength];
+    [newData writeUint16:mCompressionCode atOffset:kDWTWaveFmtChunkCompressionCodeOffset];
+    [newData writeUint16:mNumChannels atOffset:kDWTWaveFmtChunkNumChannelsOffset];
+    [newData writeUint32:mSampleRate atOffset:kDWTWaveFmtChunkSampleRateOffset];
+    [newData writeUint32:mAverageBytesPerSecond atOffset:kDWTWaveFmtChunkAverageBytesPerSecondOffset];
+    [newData writeUint16:mBlockAlign atOffset:kDWTWaveFmtChunkBlockAlignOffset];
+    [newData writeUint16:mBitsPerSample atOffset:kDWTWaveFmtChunkBitsPerSampleOffset];
+    if (mExtraFormatBytes) {
+        [newData writeUint16:(uint16_t)[mExtraFormatBytes length] atOffset:kDWTWaveFmtChunkExtraFormatBytesLengthOffset];
+        [newData appendData:mExtraFormatBytes];
+    }
+    self.directData = newData;
 }
 
 @end

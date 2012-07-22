@@ -23,3 +23,4 @@
 #import <WaveTools/DWTWaveSilentChunk.h>
 #import <WaveTools/DWTWavePlaylistChunk.h>
 #import <WaveTools/DWTWaveRegnChunk.h>
+#import <WaveTools/DWTWaveLabeledTextChunk.h>

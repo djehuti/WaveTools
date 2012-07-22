@@ -59,6 +59,10 @@
     STAssertNotNil(chunk, @"init empty silent chunk");
     STAssertNoThrow(chunk = [[[DWTWavePlaylistChunk alloc] init] autorelease], @"init empty playlist chunk");
     STAssertNotNil(chunk, @"init empty playlist chunk");
+    STAssertNoThrow(chunk = [[[DWTWaveRegnChunk alloc] init] autorelease], @"init empty regn chunk");
+    STAssertNotNil(chunk, @"init empty regn chunk");
+    STAssertNoThrow(chunk = [[[DWTWaveLabeledTextChunk alloc] init] autorelease], @"init empty labeled text chunk");
+    STAssertNotNil(chunk, @"init empty labeled text chunk");
 }
 
 - (void) testRiff
