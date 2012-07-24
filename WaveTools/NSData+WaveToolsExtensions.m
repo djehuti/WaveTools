@@ -31,13 +31,13 @@ static void DWTNotEnoughData(void)
 
 @implementation NSData (WaveToolsExtensions)
 
-- (uint32_t) readUint32AtOffset:(NSUInteger)offset
+- (uint8_t) readUint8AtOffset:(NSUInteger)offset
 {
-    if ([self length] < (offset + sizeof(uint32_t))) {
+    if ([self length] < (offset + sizeof(uint8_t))) {
         DWTNotEnoughData();
     }
-    uint32_t* valuePointer = (uint32_t*) ([self bytes] + offset);
-    return CFSwapInt32LittleToHost(*valuePointer);
+    uint8_t* valuePointer = (uint8_t*) ([self bytes] + offset);
+    return *valuePointer;
 }
 
 - (uint16_t) readUint16AtOffset:(NSUInteger)offset
@@ -47,6 +47,24 @@ static void DWTNotEnoughData(void)
     }
     uint16_t* valuePointer = (uint16_t*) ([self bytes] + offset);
     return CFSwapInt16LittleToHost(*valuePointer);
+}
+
+- (uint32_t) readUint32AtOffset:(NSUInteger)offset
+{
+    if ([self length] < (offset + sizeof(uint32_t))) {
+        DWTNotEnoughData();
+    }
+    uint32_t* valuePointer = (uint32_t*) ([self bytes] + offset);
+    return CFSwapInt32LittleToHost(*valuePointer);
+}
+
+- (uint64_t) readUint64AtOffset:(NSUInteger)offset
+{
+    if ([self length] < (offset + sizeof(uint64_t))) {
+        DWTNotEnoughData();
+    }
+    uint64_t* valuePointer = (uint64_t*) ([self bytes] + offset);
+    return CFSwapInt64LittleToHost(*valuePointer);
 }
 
 - (NSString*) read4CharAtOffset:(NSUInteger)offset
@@ -70,11 +88,42 @@ static void DWTNotEnoughData(void)
     }
 }
 
+- (NSString*) readPascalStringAtOffset:(NSUInteger)offset
+{
+    uint8_t stringLength = [self readUint8AtOffset:offset];
+    if (stringLength > 0) {
+        if ([self length] < (offset + sizeof(uint8_t) + stringLength)) {
+            DWTNotEnoughData();
+        }
+        NSData* subdata = [self subdataWithRange:NSMakeRange(offset + sizeof(uint8_t), stringLength)];
+        return [[[NSString alloc] initWithData:subdata encoding:NSISOLatin1StringEncoding] autorelease];
+    } else {
+        return @"";
+    }
+}
+
 @end
 
 #pragma mark -
 
 @implementation NSMutableData (WaveToolsExtensions)
+
+- (void) writeUint8:(uint8_t)value atOffset:(NSUInteger)offset
+{
+    if ([self length] < (offset + sizeof(uint8_t))) {
+        [self setLength:(offset + sizeof(uint8_t))];
+    }
+    [self replaceBytesInRange:NSMakeRange(offset, sizeof(uint8_t)) withBytes:&value length:sizeof(uint8_t)];
+}
+
+- (void) writeUint16:(uint16_t)value atOffset:(NSUInteger)offset
+{
+    if ([self length] < (offset + sizeof(uint16_t))) {
+        [self setLength:(offset + sizeof(uint16_t))];
+    }
+    uint16_t littleEndianValue = CFSwapInt16HostToLittle(value);
+    [self replaceBytesInRange:NSMakeRange(offset, sizeof(uint16_t)) withBytes:&littleEndianValue length:sizeof(uint16_t)];
+}
 
 - (void) writeUint32:(uint32_t)value atOffset:(NSUInteger)offset
 {
@@ -85,13 +134,13 @@ static void DWTNotEnoughData(void)
     [self replaceBytesInRange:NSMakeRange(offset, sizeof(uint32_t)) withBytes:&littleEndianValue length:sizeof(uint32_t)];
 }
 
-- (void) writeUint16:(uint16_t)value atOffset:(NSUInteger)offset
+- (void) writeUint64:(uint64_t)value atOffset:(NSUInteger)offset
 {
-    if ([self length] < (offset + sizeof(uint16_t))) {
-        [self setLength:(offset + sizeof(uint16_t))];
+    if ([self length] < (offset + sizeof(uint64_t))) {
+        [self setLength:(offset + sizeof(uint64_t))];
     }
-    uint16_t littleEndianValue = CFSwapInt16HostToLittle(value);
-    [self replaceBytesInRange:NSMakeRange(offset, sizeof(uint16_t)) withBytes:&littleEndianValue length:sizeof(uint16_t)];
+    uint64_t littleEndianValue = CFSwapInt64HostToLittle(value);
+    [self replaceBytesInRange:NSMakeRange(offset, sizeof(uint64_t)) withBytes:&littleEndianValue length:sizeof(uint64_t)];
 }
 
 - (void) write4Char:(NSString*)value atOffset:(NSUInteger)offset
@@ -121,6 +170,23 @@ static void DWTNotEnoughData(void)
     [self appendData:stringData];
     unsigned char zero = 0;
     [self appendBytes:&zero length:1];
+}
+
+- (void) writePascalString:(NSString*)value atOffset:(NSUInteger)offset
+{
+    NSData* stringData = [value dataUsingEncoding:NSISOLatin1StringEncoding];
+    if ([stringData length] > UINT8_MAX) {
+        NSException* exc = [NSException exceptionWithName:NSInvalidArgumentException
+                                                   reason:DWTLocalizedString(@"String too long to be encoded as a Pascal string.", @"Pascal string >255 bytes message.")
+                                                 userInfo:[NSDictionary dictionary]];
+        @throw exc;
+    }
+    uint8_t stringLength = [stringData length];
+    if ([self length] < (offset + sizeof(uint8_t) + stringLength)) {
+        [self setLength:(offset + sizeof(uint8_t) + stringLength)];
+    }
+    [self writeUint8:stringLength atOffset:offset];
+    [self replaceBytesInRange:NSMakeRange(offset + sizeof(uint8_t), stringLength) withBytes:[stringData bytes] length:stringLength];
 }
 
 @end
