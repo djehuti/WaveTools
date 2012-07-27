@@ -112,7 +112,6 @@
     static NSUInteger riffDataSize = sizeof(riffData)/sizeof(riffData[0]);
 
     DWTWaveChunk* riffChunk = [[[DWTWaveChunk alloc] init] autorelease];
-    riffChunk.chunkID = @"RIFF";
     riffChunk.directData = [@"WAVE" dataUsingEncoding:NSISOLatin1StringEncoding];
     DWTWaveListInfoChunk* listChunk = [[[DWTWaveListInfoChunk alloc] init] autorelease];
     [riffChunk appendSubchunk:listChunk];

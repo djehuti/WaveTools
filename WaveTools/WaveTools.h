@@ -24,3 +24,7 @@
 #import <WaveTools/DWTWavePlaylistChunk.h>
 #import <WaveTools/DWTWaveRegnChunk.h>
 #import <WaveTools/DWTWaveLabeledTextChunk.h>
+#import <WaveTools/DWTAudioFile.h>
+#import <WaveTools/DWTAudioFileRegion.h>
+#import <WaveTools/DWTAudioBuffer.h>
+#import <WaveTools/DWTWaveFile.h>

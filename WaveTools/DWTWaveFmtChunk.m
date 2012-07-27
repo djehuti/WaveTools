@@ -139,9 +139,6 @@
     }
 }
 
-// TODO: Separate all of these into getters/setters so that the setters can recalculate the data.
-@synthesize extraFormatBytes = mExtraFormatBytes;
-
 - (NSString*) compressionDescription
 {
     static NSDictionary* s_compressionCodeDescriptions = nil;

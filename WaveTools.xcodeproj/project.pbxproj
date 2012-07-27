@@ -35,6 +35,16 @@
 		F27BDDE415BC4C0800AF31E6 /* DWTWaveRegnChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDE215BC4C0800AF31E6 /* DWTWaveRegnChunk.m */; };
 		F27BDDE715BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDDE515BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F27BDDE815BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDDE615BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.m */; };
+		F27BDE1515C205D300AF31E6 /* DWTAudioFile.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDE1415C205D300AF31E6 /* DWTAudioFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDE1815C2068E00AF31E6 /* DWTAudioFileRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDE1615C2068E00AF31E6 /* DWTAudioFileRegion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDE1915C2068E00AF31E6 /* DWTAudioFileRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDE1715C2068E00AF31E6 /* DWTAudioFileRegion.m */; };
+		F27BDE1D15C20EB900AF31E6 /* DWTAudioBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDE1B15C20EB800AF31E6 /* DWTAudioBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDE1E15C20EB900AF31E6 /* DWTAudioBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDE1C15C20EB900AF31E6 /* DWTAudioBuffer.m */; };
+		F27BDE2215C2282300AF31E6 /* DWTWaveFile.h in Headers */ = {isa = PBXBuildFile; fileRef = F27BDE2015C2282300AF31E6 /* DWTWaveFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F27BDE2315C2282300AF31E6 /* DWTWaveFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDE2115C2282300AF31E6 /* DWTWaveFile.m */; };
+		F27BDE2515C23C4500AF31E6 /* minimal16.wav in Resources */ = {isa = PBXBuildFile; fileRef = F27BDE2415C23C4500AF31E6 /* minimal16.wav */; };
+		F27BDE2815C23C5F00AF31E6 /* WaveFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F27BDE2715C23C5E00AF31E6 /* WaveFileTests.m */; };
+		F27BDE2A15C2433100AF31E6 /* minimal24.wav in Resources */ = {isa = PBXBuildFile; fileRef = F27BDE2915C2433100AF31E6 /* minimal24.wav */; };
 		F2EC842515B61A910069145A /* WaveTools.h in Headers */ = {isa = PBXBuildFile; fileRef = F202544C15B615DC00083755 /* WaveTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2EC842915B61ABB0069145A /* WaveToolsLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */; };
 		F2EC842D15B61BEE0069145A /* WaveToolsBundleUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -104,6 +114,17 @@
 		F27BDDE215BC4C0800AF31E6 /* DWTWaveRegnChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveRegnChunk.m; sourceTree = "<group>"; };
 		F27BDDE515BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveLabeledTextChunk.h; sourceTree = "<group>"; };
 		F27BDDE615BC4D3E00AF31E6 /* DWTWaveLabeledTextChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveLabeledTextChunk.m; sourceTree = "<group>"; };
+		F27BDE1415C205D300AF31E6 /* DWTAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTAudioFile.h; sourceTree = "<group>"; };
+		F27BDE1615C2068E00AF31E6 /* DWTAudioFileRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTAudioFileRegion.h; sourceTree = "<group>"; };
+		F27BDE1715C2068E00AF31E6 /* DWTAudioFileRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTAudioFileRegion.m; sourceTree = "<group>"; };
+		F27BDE1B15C20EB800AF31E6 /* DWTAudioBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTAudioBuffer.h; sourceTree = "<group>"; };
+		F27BDE1C15C20EB900AF31E6 /* DWTAudioBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTAudioBuffer.m; sourceTree = "<group>"; };
+		F27BDE2015C2282300AF31E6 /* DWTWaveFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTWaveFile.h; sourceTree = "<group>"; };
+		F27BDE2115C2282300AF31E6 /* DWTWaveFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTWaveFile.m; sourceTree = "<group>"; };
+		F27BDE2415C23C4500AF31E6 /* minimal16.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minimal16.wav; sourceTree = "<group>"; };
+		F27BDE2615C23C5E00AF31E6 /* WaveFileTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveFileTests.h; sourceTree = "<group>"; };
+		F27BDE2715C23C5E00AF31E6 /* WaveFileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveFileTests.m; sourceTree = "<group>"; };
+		F27BDE2915C2433100AF31E6 /* minimal24.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = minimal24.wav; sourceTree = "<group>"; };
 		F28A6A1515B65CC400B4FFD0 /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsLocalization.h; sourceTree = "<group>"; };
 		F2EC842B15B61BEE0069145A /* WaveToolsBundleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveToolsBundleUtils.h; sourceTree = "<group>"; };
@@ -196,6 +217,8 @@
 				F2EC842715B61ABA0069145A /* WaveToolsLocalization.h */,
 				F202546D15B6180800083755 /* DWTMath.h */,
 				F202546E15B6180800083755 /* DWTMath.m */,
+				F27BDE1215C205A100AF31E6 /* Audio */,
+				F27BDE1F15C2280E00AF31E6 /* WaveFile */,
 				F2EC843315B638560069145A /* WaveChunk */,
 				F2EC844415B64A900069145A /* Resources */,
 				F202544615B615DC00083755 /* Supporting Files */,
@@ -222,6 +245,8 @@
 				F26B869815BB3D2400844298 /* WaveChunkTests.m */,
 				F27BDDDD15BC414200AF31E6 /* WaveNSDataTests.h */,
 				F27BDDDE15BC414200AF31E6 /* WaveNSDataTests.m */,
+				F27BDE2615C23C5E00AF31E6 /* WaveFileTests.h */,
+				F27BDE2715C23C5E00AF31E6 /* WaveFileTests.m */,
 				F202545C15B615DC00083755 /* Supporting Files */,
 			);
 			path = WaveToolsTests;
@@ -232,8 +257,31 @@
 			children = (
 				F202545D15B615DC00083755 /* WaveToolsTests-Info.plist */,
 				F202545E15B615DC00083755 /* InfoPlist.strings */,
+				F27BDE2415C23C4500AF31E6 /* minimal16.wav */,
+				F27BDE2915C2433100AF31E6 /* minimal24.wav */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F27BDE1215C205A100AF31E6 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F27BDE1415C205D300AF31E6 /* DWTAudioFile.h */,
+				F27BDE1615C2068E00AF31E6 /* DWTAudioFileRegion.h */,
+				F27BDE1715C2068E00AF31E6 /* DWTAudioFileRegion.m */,
+				F27BDE1B15C20EB800AF31E6 /* DWTAudioBuffer.h */,
+				F27BDE1C15C20EB900AF31E6 /* DWTAudioBuffer.m */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		F27BDE1F15C2280E00AF31E6 /* WaveFile */ = {
+			isa = PBXGroup;
+			children = (
+				F27BDE2015C2282300AF31E6 /* DWTWaveFile.h */,
+				F27BDE2115C2282300AF31E6 /* DWTWaveFile.m */,
+			);
+			name = WaveFile;
 			sourceTree = "<group>";
 		};
 		F2EC843315B638560069145A /* WaveChunk */ = {
@@ -307,6 +355,10 @@
 				F27BDDD115BBB73F00AF31E6 /* DWTWavePlaylistChunk.h in Headers */,
 				F27BDDE315BC4C0800AF31E6 /* DWTWaveRegnChunk.h in Headers */,
 				F27BDDE715BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.h in Headers */,
+				F27BDE1515C205D300AF31E6 /* DWTAudioFile.h in Headers */,
+				F27BDE1815C2068E00AF31E6 /* DWTAudioFileRegion.h in Headers */,
+				F27BDE1D15C20EB900AF31E6 /* DWTAudioBuffer.h in Headers */,
+				F27BDE2215C2282300AF31E6 /* DWTWaveFile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +444,8 @@
 			files = (
 				F202546015B615DC00083755 /* InfoPlist.strings in Resources */,
 				F202546215B615DC00083755 /* WaveToolsTests.h in Resources */,
+				F27BDE2515C23C4500AF31E6 /* minimal16.wav in Resources */,
+				F27BDE2A15C2433100AF31E6 /* minimal24.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +489,9 @@
 				F27BDDD215BBB73F00AF31E6 /* DWTWavePlaylistChunk.m in Sources */,
 				F27BDDE415BC4C0800AF31E6 /* DWTWaveRegnChunk.m in Sources */,
 				F27BDDE815BC4D3F00AF31E6 /* DWTWaveLabeledTextChunk.m in Sources */,
+				F27BDE1915C2068E00AF31E6 /* DWTAudioFileRegion.m in Sources */,
+				F27BDE1E15C20EB900AF31E6 /* DWTAudioBuffer.m in Sources */,
+				F27BDE2315C2282300AF31E6 /* DWTWaveFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +502,7 @@
 				F202546415B615DC00083755 /* WaveToolsTests.m in Sources */,
 				F26B869915BB3D2400844298 /* WaveChunkTests.m in Sources */,
 				F27BDDDF15BC414200AF31E6 /* WaveNSDataTests.m in Sources */,
+				F27BDE2815C23C5F00AF31E6 /* WaveFileTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
