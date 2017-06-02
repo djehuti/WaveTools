@@ -35,6 +35,13 @@
         mStringValue = [stringValue retain];
         NSMutableData* newData = [NSMutableData dataWithLength:0];
         [newData writeNulTerminatedString:mStringValue atOffset:0];
+        
+        // check for the correct padding
+        // An odd byte length chunks exists that is not immediately followed by a NULL byte.
+        // This could cause problems in reading subsequent chunks in some systems so add one more byte.
+        if (newData.length % 2 != 0) {
+            [newData writeNulTerminatedString:@"" atOffset:newData.length];
+        }
         self.directData = newData;
     }
 }
